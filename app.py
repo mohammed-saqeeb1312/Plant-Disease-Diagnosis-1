@@ -248,6 +248,7 @@ def predict():
         img = prepare_image(image)
 
         # Run prediction
+       
         pred = model(img, training=False).numpy()
         index = int(np.argmax(pred[0]))
         confidence = float(np.max(pred[0]))
@@ -261,10 +262,11 @@ def predict():
                 disease = "Undefined"
 
         confidence_pct = round(confidence * 100, 2)
+
         # Language data
         data = info[disease].get(lang, info[disease]["en"])
 
-                return jsonify({
+        return jsonify({
             "title": data["title"],
             "reason": data["reason"],
             "symptoms": data["symptoms"],
@@ -285,6 +287,7 @@ def predict():
         return jsonify({
             "error": "Prediction failed. Please try again."
         }), 500
+
 #  CHATBOT
 # ─────────────────────────────────────────────
 qa_data = {
