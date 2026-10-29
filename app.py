@@ -10,6 +10,10 @@
 """
 
 from flask import Flask, render_template, request, jsonify
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+import tensorflow as tf
 import tensorflow as tf
 import numpy as np
 from PIL import Image
@@ -245,7 +249,7 @@ def predict():
         img = prepare_image(image)
 
         # Run prediction
-        pred = model.predict(img, verbose=0)
+        pred = model(img, training=False).numpy()
         index = int(np.argmax(pred[0]))
         confidence = float(np.max(pred[0]))
 
@@ -258,11 +262,10 @@ def predict():
                 disease = "Undefined"
 
         confidence_pct = round(confidence * 100, 2)
-
         # Language data
         data = info[disease].get(lang, info[disease]["en"])
 
-        return jsonify({
+                return jsonify({
             "title": data["title"],
             "reason": data["reason"],
             "symptoms": data["symptoms"],
@@ -280,9 +283,9 @@ def predict():
 
     except Exception as e:
         app.logger.exception("Prediction failed")
-        return jsonify({"error": str(e)}), 500
-
-# ─────────────────────────────────────────────
+        return jsonify({
+            "error": "Prediction failed. Please try again."
+        }), 500
 #  CHATBOT
 # ─────────────────────────────────────────────
 qa_data = {
