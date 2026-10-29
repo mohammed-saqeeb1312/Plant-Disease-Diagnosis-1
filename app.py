@@ -555,7 +555,7 @@ qa_data = {
 "who is sagar": "Sagar calm, composed aur balanced hai.",
 "who is imam sab": "Imam Sab respected hai aur wisdom carry karte hain.",
 # ================= TEACHERS =================
-"kumarsir kaun hain": "Kumar Sir ek teacher hain jo HTML, CSS aur JavaScript padhate hain.",
+"kumar sir kaun hain": "Kumar Sir ek teacher hain jo HTML, CSS aur JavaScript padhate hain.",
 "kumar sir kya padhate hain": "Kumar Sir HTML, CSS, JavaScript aur web development ke concepts padhate hain.",
 "kumar kaun hain": "Kumar Sir ek web development teacher hain jo HTML, CSS aur JavaScript padhate hain.",
 "kumar sir ke subjects kya hain": "Kumar Sir HTML se web page ki structure, CSS se styling aur layouts, aur JavaScript se logic aur interactive web pages banana sikhate hain.",
@@ -566,17 +566,17 @@ qa_data = {
 "kumar sir ke bare mein kya jante ho": "Kumar Sir HTML, CSS aur JavaScript ke teacher hain. Woh students ko coding concepts, programming logic aur web development practical examples ke saath sikhate hain.",
 "kumar sir kis subject ke teacher hain": "Kumar Sir web development ke teacher hain. Woh mainly HTML, CSS aur JavaScript padhate hain.",
 "kumar sir kya sikhate hain": "Kumar Sir students ko websites banana, HTML se structure create karna, CSS se design karna aur JavaScript se website ko interactive banana sikhate hain.",
-"kumar sir ka teaching style kaisa hai": "Kumar Sir concepts ko step-by-step aur practical examples ke saath samjhate hain, jisse students ko coding aur web development samajhne mein aasani hoti hai."
+"kumar sir ka teaching style kaisa hai": "Kumar Sir concepts ko step-by-step aur practical examples ke saath samjhate hain, jisse students ko coding aur web development samajhne mein aasani hoti hai.",
 #                ENGLISH
-"who is kumar sir" "Kumar Sir is a teacher who teaches HTML, CSS, and JavaScript.", 
+"who is kumar sir": "Kumar Sir is a teacher who teaches HTML, CSS, and JavaScript.", 
 "what does kumar sir teach": "Kumar Sir teaches HTML, CSS, JavaScript, and web development concepts.",
 "who is kumar": "Kumar Sir is a web development teacher who teaches HTML, CSS, and JavaScript.",
 "kumar sir subjects": "Kumar Sir teaches HTML for web structure, CSS for styling and layouts, and JavaScript for logic and interactive web pages.",
 "about kumar sir": "Kumar Sir is a supportive web development teacher who helps students understand HTML, CSS, and JavaScript through simple explanations and practical coding.",
 "kumar sir kya padhate hain": "Kumar Sir HTML, CSS aur JavaScript padhate hain. Woh web development ke concepts ko step by step aur practical coding ke through samjhate hain.",
 "kumar sir kaun hain": "Kumar Sir ek web development teacher hain jo HTML, CSS aur JavaScript padhate hain.",
-"kumar sir ke subjects kya hain": "Kumar Sir ke main subjects HTML, CSS aur JavaScript hain."
-"who is sandesh sir" "Sandesh Mathpati Sir is a highly skilled DSA teacher known for his clear concepts and logical teaching approach.",
+"kumar sir ke subjects kya hain": "Kumar Sir ke main subjects HTML, CSS aur JavaScript hain.",
+"who is sandesh sir": "Sandesh Mathpati Sir is a highly skilled DSA teacher known for his clear concepts and logical teaching approach.",
 "who is sandeep samson sir": "Sandeep Samson Sir is an inspiring Robotics teacher known for his practical approach and innovative thinking.",
 "who is bharti sharma mam": "Bharti Sharma Mam is a dedicated Robotics teacher who focuses on fundamentals and practical understanding.",
 "what is dsa": "DSA (Data Structures and Algorithms) helps in solving problems efficiently using proper logic and data organization.",
