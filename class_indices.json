@@ -1,0 +1,7 @@
+{
+  "Healthy": 0,
+  "Nutritional": 1,
+  "Powdery": 2,
+  "Rust": 3,
+  "Undefined": 4
+}

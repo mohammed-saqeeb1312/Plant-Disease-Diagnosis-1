@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>🌿 PlantCare AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<style>
+
+</style>
+
+</head>
+<body>
+
+<!--  NAVBAR front page ka hai ye -->
+<nav class="navbar">
+    <div class="logo">🌿 PlantCare AI</div>
+    <ul class="nav-links">
+        <li onclick="goPage('home')">Home</li>
+        <li onclick="goPage('diagnose')">Diagnose</li>
+        <li onclick="goPage('library')">Disease Library</li>
+        <li onclick="goPage('how')">How It Works</li>
+        <li onclick="goPage('agrivision')">Chatbot AI</li>
+    </ul>
+</nav>
+
+<!--  HOME page pura structure  -->
+<section id="homePage" class="page active">
+<div class="hero">
+
+<div class="hero-left">
+<h1>Diagnose <span>Plant Diseases</span> Instantly</h1>
+
+<p>Smart AI system to identify plant diseases and suggest treatments instantly.</p>
+
+<ul class="hero-list">
+<li> Fast AI Detection</li>
+<li> Accurate Results (98%)</li>
+<li> Easy Upload & Camera Support</li>
+<li> Instant Cure Suggestions</li>
+</ul>
+
+<div class="hero-btns">
+<button onclick="goPage('diagnose')" class="start-btn">🚀 Start Diagnosis</button>
+<button onclick="goPage('diagnose')" class="upload-btn">📤 Upload Image</button>
+</div>
+
+<div class="stats">
+<div><h2>50+</h2><p>Diseases</p></div>
+<div><h2>98%</h2><p>Accuracy</p></div>
+<div><h2>4+</h2><p>Users</p></div>
+</div>
+</div>
+
+<div class="hero-right">
+<img src="/static/images/plant1.jpg">
+<img src="/static/images/plant2.jpg">
+<img src="/static/images/plant3.jpg">
+<img src="/static/images/plant4.jpg">
+</div>
+
+</div>
+</section>
+
+<section id="diagnosePage" class="page">
+
+<div class="main-section">
+<div class="container">
+
+
+
+ <!--  2nd    second section page start from here                                      2nd  :- -->                                     
+
+<div class="card upload-card">
+
+<h2>🌿 Upload Plant Image</h2>
+
+<p class="subtitle">
+Upload a clear image of plant leaf for accurate AI diagnosis
+</p>
+
+<ul class="card-list">
+<li> High-quality image gives better results</li>
+<li> Use camera for real-time detection</li>
+<li> Supports multiple plant types</li>
+</ul>
+
+<!-- DRAG & DROP BOX -->
+<div class="upload-box" onclick="openFile()" id="dropZone">
+    <p>📤 Drag & Drop Image</p>
+    <span>or click to upload</span>
+</div>
+
+<input type="file" id="imageInput" hidden>
+
+<!-- BUTTONS -->
+<div class="btn-group">
+<button onclick="openFile()">📤 Upload Image</button>
+<button onclick="openCamera()">📷 Open Camera</button>
+</div>
+
+<video id="camera" autoplay playsinline style="display:none;"></video>
+
+<button onclick="openCamera()">Open Camera</button>
+<button id="captureBtn" onclick="captureImage()" style="display:none;">Capture</button>
+
+<img id="preview" style="display:none; width:200px;">
+<img id="resultImage" style="display:none; width:200px;">
+
+
+
+
+</div>
+
+
+
+<!-- # RESULT CARD ka hai ye sab -->
+ 
+
+<div class="card result-card">
+
+<h2>🤖 AI Result</h2>
+
+<!-- IMAGE PREVIEW -->
+<img id="preview" class="preview-img">
+
+
+
+
+<div style="display:flex; gap:10px; align-items:center; justify-content:center;">
+
+    <!-- Analyze Button -->
+    <button id="predictBtn" onclick="predictImage()" class="analyze-btn">
+        🔁 Analyze Again
+    </button>
+
+    <!-- Language Dropdown -->
+    <select id="langSelect" style="
+        padding:8px 12px;
+        border-radius:10px;
+        background:#0f2027;
+        color:white;
+        border:1px solid #00ff90;
+        cursor:pointer;
+    ">
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+        <option value="kn">Kannada</option>
+    </select>
+
+</div>
+<button onclick="speakResult()" class="voice-btn">
+    🔊 Speak
+</button>
+
+
+
+<h2 id="resultTitle"></h2>
+<p id="resultReason"></p>
+<p id="resultSymptoms"></p>
+<p id="resultCure"></p>
+<p id="resultPrevention"></p>
+
+<!-- BUTTON -->
+<button id="predictBtn" onclick="predictImage()">🌿 Analyze Plant</button>
+
+
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-circle"></div>
+    <p>Analyzing with AI...</p>
+</div>
+
+<!-- RESULT OUTPUT -->
+<div id="result"></div>
+
+</div>
+
+<!--  PRODUCT CARD 3rd box here -->
+<div class="card product-card-container" id="productContainer">
+
+<h2>🛒 Recommended Products</h2>
+
+<p class="subtitle">
+AI suggests treatments & products based on disease
+</p>
+
+<div id="productList"></div>
+
+</div>
+
+</div>
+</div>
+
+</section>
+
+
+
+<!--  LIBRARY 3rd section hai ye pura                                                       3rd -->
+<section id="libraryPage" class="page">
+
+<h1 class="center">🌱 Disease Library</h1>
+
+<p class="center subtitle">
+Explore common plant diseases, symptoms & treatments.
+</p>
+
+<input class="search" placeholder="🔍 Search diseases...">
+
+<div class="filters">
+<button class="active">All</button>
+<button>Fungal</button>
+<button>Bacterial</button>
+<button>Viral</button>
+</div>
+
+<div class="library">
+
+<!-- FUNGAL DISEASES  SECTION HAI YE -->
+<div class="disease-card fungal">
+    <img src="/static/images/blight.jpg" class="disease-img">
+    <div class="tag">Fungal</div>
+    <h2>Late Blight</h2>
+    <ul>
+        <li>✔ Causes leaf decay</li>
+        <li>✔ Spreads rapidly</li>
+        <li>✔ Needs fungicide spray</li>
+    </ul>
+</div>
+
+<div class="disease-card fungal">
+    <img src="/static/images/mildew.jpg" class="disease-img">
+    <div class="tag">Fungal</div>
+    <h2>Powdery Mildew</h2>
+    <ul>
+        <li>✔ White powder spots</li>
+        <li>✔ Affects leaves</li>
+        <li>✔ Use antifungal spray</li>
+    </ul>
+</div>
+
+<div class="disease-card fungal">
+    <img src="/static/images/rust.jpg" class="disease-img">
+    <div class="tag">Fungal</div>
+    <h2>Rust Disease</h2>
+    <ul>
+        <li>✔ Orange rust patches</li>
+        <li>✔ Weakens plant</li>
+        <li>✔ Apply fungicide</li>
+    </ul>
+</div>
+
+<div class="disease-card fungal">
+    <img src="/static/images/leafspot.jpg" class="disease-img">
+    <div class="tag">Fungal</div>
+    <h2>Leaf Spot</h2>
+    <ul>
+        <li>✔ Brown/black spots</li>
+        <li>✔ Causes leaf drop</li>
+        <li>✔ Avoid excess water</li>
+    </ul>
+</div>
+
+<div class="disease-card fungal">
+    <img src="/static/images/fusarium.jpg" class="disease-img">
+    <div class="tag">Fungal</div>
+    <h2>Fusarium Wilt</h2>
+    <ul>
+        <li>✔ Yellowing leaves</li>
+        <li>✔ Stem rot at base</li>
+        <li>✔ Crop rotation helps</li>
+    </ul>
+</div>
+
+<div class="disease-card fungal">
+    <img src="/static/images/smut.jpg" class="disease-img">
+    <div class="tag">Fungal</div>
+    <h2>Loose Smut</h2>
+    <ul>
+        <li>✔ Black powdery spores</li>
+        <li>✔ Affects grains</li>
+        <li>✔ Treat seeds before planting</li>
+    </ul>
+</div>
+
+<!-- BACTERIAL DISEASES SECTION HAI YE -->
+<div class="disease-card bacterial">
+    <img src="/static/images/bacterialspot.jpg" class="disease-img">
+    <div class="tag">Bacterial</div>
+    <h2>Bacterial Spot</h2>
+    <ul>
+        <li>✔ Dark leaf spots</li>
+        <li>✔ Yellow halo effect</li>
+        <li>✔ Remove infected parts</li>
+    </ul>
+</div>
+
+<div class="disease-card bacterial">
+    <img src="/static/images/wilt.jpg" class="disease-img">
+    <div class="tag">Bacterial</div>
+    <h2>Bacterial Wilt</h2>
+    <ul>
+        <li>✔ Sudden wilting</li>
+        <li>✔ No early yellowing</li>
+        <li>✔ Destroy infected plants</li>
+    </ul>
+</div>
+
+<div class="disease-card bacterial">
+    <img src="/static/images/fireblight.jpg" class="disease-img">
+    <div class="tag">Bacterial</div>
+    <h2>Fire Blight</h2>
+    <ul>
+        <li>✔ Burnt leaf appearance</li>
+        <li>✔ Affects fruit trees</li>
+        <li>✔ Prune infected areas</li>
+    </ul>
+</div>
+
+<div class="disease-card bacterial">
+    <img src="/static/images/canker.jpg" class="disease-img">
+    <div class="tag">Bacterial</div>
+    <h2>Ring Canker</h2>
+    <ul>
+        <li>✔ Circular lesions on stems</li>
+        <li>✔ Leaf yellowing</li>
+        <li>✔ Use copper-based sprays</li>
+    </ul>
+</div>
+
+<div class="disease-card bacterial">
+    <img src="/static/images/xanthomonas.jpg" class="disease-img">
+    <div class="tag">Bacterial</div>
+    <h2>Xanthomonas Leaf Blight</h2>
+    <ul>
+        <li>✔ Water-soaked spots</li>
+        <li>✔ Spreads via water</li>
+        <li>✔ Remove infected leaves</li>
+    </ul>
+</div>
+
+<!-- VIRAL DISEASES SECTION HAI YE -->
+<div class="disease-card viral">
+    <img src="/static/images/leafcurl.jpg" class="disease-img">
+    <div class="tag">Viral</div>
+    <h2>Leaf Curl Virus</h2>
+    <ul>
+        <li>✔ Curled leaves</li>
+        <li>✔ Stunted growth</li>
+        <li>✔ Control insects</li>
+    </ul>
+</div>
+
+<div class="disease-card viral">
+    <img src="/static/images/mosaic.jpg" class="disease-img">  
+    <div class="tag">Viral</div>
+    <h2>Mosaic Virus</h2>
+    <ul>
+        <li>✔ Yellow mosaic pattern</li>
+        <li>✔ Reduced growth</li>
+        <li>✔ Remove infected plants</li>
+    </ul>
+</div>
+
+<div class="disease-card viral">
+    <img src="/static/images/yellowvein.jpg" class="disease-img">
+    <div class="tag">Viral</div>
+    <h2>Yellow Vein Mosaic</h2>
+    <ul>
+        <li>✔ Yellow veins</li>
+        <li>✔ Leaf distortion</li>
+        <li>✔ Use resistant seeds</li>
+    </ul>
+</div>
+
+<div class="disease-card viral">
+    <img src="/static/images/tobamovirus.jpg" class="disease-img">
+    <div class="tag">Viral</div>
+    <h2>Tobamovirus Infection</h2>
+    <ul>
+        <li>✔ Mosaic leaf pattern</li>
+        <li>✔ Wilting stems</li>
+        <li>✔ Sanitize tools</li>
+    </ul>
+</div>
+
+<div class="disease-card viral">
+    <img src="/static/images/cucumbervirus.jpg" class="disease-img">
+    <div class="tag">Viral</div>
+    <h2>Cucumber Mosaic Virus</h2>
+    <ul>
+        <li>✔ Leaf puckering</li>
+        <li>✔ Reduced yield</li>
+        <li>✔ Use resistant varieties</li>
+    </ul>
+</div>
+
+</div>
+
+</section>
+
+
+
+
+<!-- HOW IT WORK SECTION -->
+<!-- ================= HOW IT WORK ================= -->
+<section id="howPage" class="page">
+
+<h1 class="how-title">⚙️ How It Works</h1>
+
+<div class="steps-container">
+
+    <div class="step glass delay1">
+        <div class="circle">📤</div>
+        <h3>Upload Image</h3>
+        <p>Take a clear photo of plant leaf or stem.</p>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="step glass delay2">
+        <div class="circle">🤖</div>
+        <h3>AI Analysis</h3>
+        <p>Model detects patterns and diseases.</p>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="step glass delay3">
+        <div class="circle">📊</div>
+        <h3>Get Diagnosis</h3>
+        <p>Receive instant results and confidence score.</p>
+    </div>
+
+    <div class="line"></div>
+
+    <div class="step glass delay4">
+        <div class="circle">💊</div>
+        <h3>Take Action</h3>
+        <p>Follow treatment recommendations.</p>
+    </div>
+
+    <!-- Moving arrows -->
+    <div class="arrow-flow">
+        <div class="arrow">➤</div>
+        <div class="arrow">➤</div>
+        <div class="arrow">➤</div>
+        <div class="arrow">➤</div>
+    </div>
+
+</div> <!-- steps-container close -->
+
+<!-- 🎥 VIDEO -->
+<div class="video-container">
+
+    <h2 class="video-heading">🎥 See It In Action</h2>
+
+    <div class="video-wrapper">
+
+        <div class="play-btn">▶</div>
+
+        <video id="demoVideo" class="video-player" controls preload="metadata">
+            <source src="{{ url_for('static', filename='video/demo.mp4') }}" type="video/mp4">
+        </video>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= CHATBOT ================= -->
+<section id="agrivisionPage" class="page">
+
+<div class="chat-container">
+
+    <!-- HEADER -->
+    <div class="chat-header">
+        <div class="header-left">
+            <img src="/static/images/myphoto.jpg" class="header-logo">
+            <span class="title"><h2>🤖 Chatbot AI<h2/></span>
+        </div>
+        <div class="status">🟢 Online</div>
+    </div>
+
+    <!-- CHAT BOX -->
+    <div id="chatBox" class="chat-box"></div>
+
+    <!-- INPUT -->
+    <div class="chat-input-area">
+
+        <button class="voice-btn" onclick="startListening()">🎤</button>
+
+        <input id="userInput" type="text" placeholder="Ask about plant disease..." />
+
+        <button class="send-btn" onclick="sendMessage()">➤</button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<script src="/static/js/script.js"></script>
+
+</body>
+</html>
