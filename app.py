@@ -14,7 +14,6 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 import tensorflow as tf
-import tensorflow as tf
 import numpy as np
 from PIL import Image
 from rapidfuzz import process
