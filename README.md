@@ -175,7 +175,7 @@ An Android application can also be developed in the future using WebView technol
 
 ## 👨‍💻 Developer
 
-**Saqeeb**
+**Mohammed Saqeeb**
 
 *PlantCare AI – Using Artificial Intelligence to Support Smarter Plant Health Diagnosis.*
 
